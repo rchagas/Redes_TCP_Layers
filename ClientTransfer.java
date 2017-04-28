@@ -14,7 +14,7 @@
                 macAddressBytes[4], macAddressBytes[5]).toUpperCase();
         return macAddress;
     }
-	    public static void main(String[] args) {
+	    public static void main(String[] args) throws SocketException, UnknownHostException {
 	 
 	        //Criando Classe cliente para receber arquivo
 	        ClientTransfer cliente = new ClientTransfer();

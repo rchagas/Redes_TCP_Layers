@@ -32,7 +32,9 @@
 	        try {
 	            // Criando conexão com o servidor
 	            System.out.println("Conectando com Servidor porta 13267");
-	            sockServer = new Socket("192.168.25.13", 13267);
+                    String address = InetAddress.getByName(InetAddress.getLocalHost()
+                            .getHostName()+".local").getHostAddress();
+	            sockServer = new Socket(address, 13267);
 	            is = sockServer.getInputStream();
 
 	            // Cria arquivo local no cliente

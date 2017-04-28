@@ -12,15 +12,16 @@
 	 *
 	 */
 	public class ServerTransfer {
-	private static String getMacAddress(NetworkInterface netInter) throws SocketException, UnknownHostException {
-		//NetworkInterface netInter = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
-		byte[] macAddressBytes = netInter.getHardwareAddress();
-		String macAddress = String.format("%1$02x-%2$02x-%3$02x-%4$02x-%5$02x-%6$02x",
-		        macAddressBytes[0], macAddressBytes[1],
-		        macAddressBytes[2], macAddressBytes[3],
-		        macAddressBytes[4], macAddressBytes[5]).toUpperCase();
-		return macAddress;
-    	}
+		private static String getMacAddress() throws SocketException, UnknownHostException {
+			NetworkInterface netInter = NetworkInterface.getByInetAddress(
+                InetAddress.getByName(InetAddress.getLocalHost().getHostName()+".local"));
+			byte[] macAddressBytes = netInter.getHardwareAddress();
+			String macAddress = String.format("%1$02x-%2$02x-%3$02x-%4$02x-%5$02x-%6$02x",
+		    macAddressBytes[0], macAddressBytes[1],
+		    macAddressBytes[2], macAddressBytes[3],
+		    macAddressBytes[4], macAddressBytes[5]).toUpperCase();
+			return macAddress;
+    }
 	    public static void main(String[] args) throws SocketException, UnknownHostException {
 	 
 	        // Criando servidor
@@ -51,7 +52,7 @@
 		    InetAddress endereco = sock.getInetAddress(); //pega o endereço do host
 		    System.out.println("Conectado à máquina: " + endereco + 
                                        " Tamanho Buffer: " + tam +
-                                       " Mac Server: " + getMacAddress(NetworkInterface.getByInetAddress(endereco)));
+                                       " Mac Server: " + getMacAddress());
 
 		    //String mac_server = getMacAddress(NetworkInterface.getByInetAddress(endereco));
 

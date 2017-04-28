@@ -5,15 +5,16 @@
 	import java.net.*;
 	 
    	public class ClientTransfer {
-		private static String getMacAddress(NetworkInterface netInter) throws SocketException, UnknownHostException {
-			//NetworkInterface netInter = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
+		private static String getMacAddress() throws SocketException, UnknownHostException {
+			NetworkInterface netInter = NetworkInterface.getByInetAddress(
+                InetAddress.getByName(InetAddress.getLocalHost().getHostName()+".local"));
 			byte[] macAddressBytes = netInter.getHardwareAddress();
 			String macAddress = String.format("%1$02x-%2$02x-%3$02x-%4$02x-%5$02x-%6$02x",
 		    macAddressBytes[0], macAddressBytes[1],
 		    macAddressBytes[2], macAddressBytes[3],
 		    macAddressBytes[4], macAddressBytes[5]).toUpperCase();
 			return macAddress;
-    	}
+    }
 
 	    public static void main(String[] args) throws SocketException, UnknownHostException {
           
@@ -35,14 +36,13 @@
 	        try {
 	            // Criando conexão com o servidor
 	            System.out.println("Conectando com Servidor porta 13267");
-                InetAddress address = InetAddress.getByName(InetAddress.getLocalHost()
-                            	.getHostName()+".local");//.getHostAddress()
+                //.getHostAddress()
 				
-				String mac_cliente = getMacAddress(NetworkInterface.getByInetAddress(address));				
+				String mac_cliente = getMacAddress();				
 				System.out.println("MAC Cliente: " + mac_cliente);
- 
-
-	            sockServer = new Socket(address, 13267);
+                
+                //ip destino
+	            sockServer = new Socket("192.168.25.13", 13267);
 	            is = sockServer.getInputStream();
 
 	            // Cria arquivo local no cliente

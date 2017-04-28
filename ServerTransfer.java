@@ -41,7 +41,7 @@
 		    int tam = sock.getSendBufferSize();//Pega tamanho do buffer de envio 			
 		    InetAddress endereco = sock.getInetAddress( );//pega o endereço do host
 		    System.out.println("Conectado à máquina: " + endereco + " Tamanho Buffer: " + tam);
-		    
+		   
 	            // Criando tamanho de leitura
 	            byte[] cbuffer = new byte[1];
 	            int bytesRead;
@@ -55,11 +55,18 @@
 	 
 	            // Lendo arquivo criado e enviado para o canal de transferencia
 	            System.out.println("Enviando Arquivo...");
+		    //instância um objeto da classe Random usando o construtor padrão
+		    Random gerador = new Random();
+
 	            while ((bytesRead = fileIn.read(cbuffer)) != -1) {
 	                
-			while()			
-			socketOut.write(cbuffer, 0, bytesRead);
-			socketOut.write("teste".getBytes());
+			int rand = gerador.nextInt(100);
+			while(rand < 50)
+			{
+				System.out.println("Conflito. Reenviado Pedaço.");			    
+				rand = gerador.nextInt(100);
+			}		
+			socketOut.write(cbuffer, 0, bytesRead);			
 	                socketOut.flush();
 
 	            }

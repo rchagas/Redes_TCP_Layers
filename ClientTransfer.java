@@ -1,8 +1,8 @@
-	import java.io.File;
+	import java.io.*;
 	import java.io.FileOutputStream;
 	import java.io.IOException;
 	import java.io.InputStream;
-	import java.net.Socket;
+	import java.net.*;
 	 
 	public class ClientTransfer {
 	    public static void main(String[] args) {
@@ -24,6 +24,18 @@
 	            System.out.println("Conectando com Servidor porta 13267");
 	            sockServer = new Socket("127.0.0.1", 13267);
 	            is = sockServer.getInputStream();
+
+		   //=========
+		   InetAddress address = InetAddress.getLocalHost();  
+		   NetworkInterface ni = NetworkInterface.getByInetAddress(address);  
+		   byte[] mac = ni.getHardwareAddress();
+		   String macAddress = "";
+		   for (int i = 0; i < mac.length; i++) {             
+		       macAddress += (String.format("%02X-", mac[i]));  
+		   }
+		   System.out.println(macAddress.substring(0, macAddress.length()-1));
+		    //========
+		    
 		    
 	 
 	            // Cria arquivo local no cliente

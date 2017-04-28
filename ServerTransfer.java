@@ -4,9 +4,7 @@
 	import java.io.OutputStream;
 	import java.net.ServerSocket;
 	import java.net.*;
-
-	import java.io.BinaryReader;
-
+	import java.util.Random;
 	 
 	/**@author Lucas iorio - http://www.byiorio.com
 	 * 
@@ -45,13 +43,12 @@
 		    System.out.println("Conectado à máquina: " + endereco + " Tamanho Buffer: " + tam);
 		    
 	            // Criando tamanho de leitura
-	            byte[] cbuffer = new byte[100];
+	            byte[] cbuffer = new byte[1];
 	            int bytesRead;
 	 
 	            // Criando arquivo que sera transferido pelo servidor
-	            File file = new File("teste.txt");
+	            File file = new File("teste");
 	            fileIn = new FileInputStream(file);
-		    BinaryReader reader = new BinaryReader(file);
 	             
 	            // Criando canal de transferencia
 	            socketOut = sock.getOutputStream();
@@ -59,8 +56,12 @@
 	            // Lendo arquivo criado e enviado para o canal de transferencia
 	            System.out.println("Enviando Arquivo...");
 	            while ((bytesRead = fileIn.read(cbuffer)) != -1) {
-	                socketOut.write(cbuffer, 0, bytesRead);
+	                
+			while()			
+			socketOut.write(cbuffer, 0, bytesRead);
+			socketOut.write("teste".getBytes());
 	                socketOut.flush();
+
 	            }
 	 
 	            System.out.println("Arquivo Enviado!");

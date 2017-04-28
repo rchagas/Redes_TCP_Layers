@@ -24,13 +24,14 @@
 	            System.out.println("Conectando com Servidor porta 13267");
 	            sockServer = new Socket("127.0.0.1", 13267);
 	            is = sockServer.getInputStream();
+		    
 	 
 	            // Cria arquivo local no cliente
 	            fos = new FileOutputStream(new File("/home/liberio/Downloads/ArqRecebido"));
 	            System.out.println("/home/liberio/Downloads/ArqRecebido");
 	             
 	            // Prepara variaveis para transferencia
-	            byte[] cbuffer = new byte[1024];
+	            byte[] cbuffer = new byte[1];
 	            int bytesRead;
 	 
 	            // Copia conteudo do canal

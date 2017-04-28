@@ -12,8 +12,8 @@
 	 *
 	 */
 	public class ServerTransfer {
-	private static String getMacAddress() throws SocketException, UnknownHostException {
-        NetworkInterface netInter = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
+	private static String getMacAddress(NetworkInterface netInter) throws SocketException, UnknownHostException {
+        //NetworkInterface netInter = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
         byte[] macAddressBytes = netInter.getHardwareAddress();
         String macAddress = String.format("%1$02x-%2$02x-%3$02x-%4$02x-%5$02x-%6$02x",
                 macAddressBytes[0], macAddressBytes[1],
@@ -49,7 +49,9 @@
 	
 		    int tam = sock.getSendBufferSize();//Pega tamanho do buffer de envio 			
 		    InetAddress endereco = sock.getInetAddress( );//pega o endereço do host
-		    System.out.println("Conectado à máquina: " + endereco + " Tamanho Buffer: " + tam);
+		    System.out.println("Conectado à máquina: " + endereco + 
+                                       " Tamanho Buffer: " + tam +
+                                       "Mac: " + getMacAddress(NetworkInterface.getByInetAddress(endereco)));
 		   
 	            // Criando tamanho de leitura
 	            byte[] cbuffer = new byte[1];

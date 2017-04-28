@@ -34,19 +34,6 @@
 	            sockServer = new Socket("127.0.0.1", 13267);
 	            is = sockServer.getInputStream();
 
-		   //=========
-		   InetAddress address = InetAddress.getLocalHost();  
-		   NetworkInterface ni = NetworkInterface.getByInetAddress(address);  
-		   byte[] mac = ni.getHardwareAddress();
-		   String macAddress = "";
-		   for (int i = 0; i < mac.length; i++) {             
-		       macAddress += (String.format("%02X-", mac[i]));  
-		   }
-		   System.out.println(macAddress.substring(0, macAddress.length()-1));
-		    //========
-		    
-		    
-	 
 	            // Cria arquivo local no cliente
 	            fos = new FileOutputStream(new File("/home/liberio/Downloads/ArqRecebido"));
 	            System.out.println("/home/liberio/Downloads/ArqRecebido");

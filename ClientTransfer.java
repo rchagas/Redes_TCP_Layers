@@ -5,6 +5,15 @@
 	import java.net.*;
 	 
 	public class ClientTransfer {
+	private static String getMacAddress() throws SocketException, UnknownHostException {
+        NetworkInterface netInter = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
+        byte[] macAddressBytes = netInter.getHardwareAddress();
+        String macAddress = String.format("%1$02x-%2$02x-%3$02x-%4$02x-%5$02x-%6$02x",
+                macAddressBytes[0], macAddressBytes[1],
+                macAddressBytes[2], macAddressBytes[3],
+                macAddressBytes[4], macAddressBytes[5]).toUpperCase();
+        return macAddress;
+    }
 	    public static void main(String[] args) {
 	 
 	        //Criando Classe cliente para receber arquivo

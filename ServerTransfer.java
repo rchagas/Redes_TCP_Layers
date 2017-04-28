@@ -13,14 +13,14 @@
 	 */
 	public class ServerTransfer {
 	private static String getMacAddress(NetworkInterface netInter) throws SocketException, UnknownHostException {
-        //NetworkInterface netInter = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
-        byte[] macAddressBytes = netInter.getHardwareAddress();
-        String macAddress = String.format("%1$02x-%2$02x-%3$02x-%4$02x-%5$02x-%6$02x",
-                macAddressBytes[0], macAddressBytes[1],
-                macAddressBytes[2], macAddressBytes[3],
-                macAddressBytes[4], macAddressBytes[5]).toUpperCase();
-        return macAddress;
-    }
+		//NetworkInterface netInter = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
+		byte[] macAddressBytes = netInter.getHardwareAddress();
+		String macAddress = String.format("%1$02x-%2$02x-%3$02x-%4$02x-%5$02x-%6$02x",
+		        macAddressBytes[0], macAddressBytes[1],
+		        macAddressBytes[2], macAddressBytes[3],
+		        macAddressBytes[4], macAddressBytes[5]).toUpperCase();
+		return macAddress;
+    	}
 	    public static void main(String[] args) throws SocketException, UnknownHostException {
 	 
 	        // Criando servidor
@@ -38,7 +38,7 @@
 	        FileInputStream fileIn = null;
 	 
 	        try {
-	            // Abrindo porta para conexao de clients
+	            // Abrindo porta para conexao de clientes
 	            servsock = new ServerSocket(13267);
 	            System.out.println("Porta de conexao aberta 13267");		    
 	 
@@ -47,12 +47,15 @@
 	            Socket sock = servsock.accept();
 	            System.out.println("Conexao recebida pelo cliente");
 	
-		    int tam = sock.getSendBufferSize();//Pega tamanho do buffer de envio 			
-		    InetAddress endereco = sock.getInetAddress( );//pega o endereço do host
+		    int tam = sock.getSendBufferSize(); //Pega tamanho do buffer de envio 			
+		    InetAddress endereco = sock.getInetAddress(); //pega o endereço do host
 		    System.out.println("Conectado à máquina: " + endereco + 
                                        " Tamanho Buffer: " + tam +
-                                       "Mac: " + getMacAddress(NetworkInterface.getByInetAddress(endereco)));
-		   
+                                       " Mac Server: " + getMacAddress(NetworkInterface.getByInetAddress(endereco)));
+
+		    //String mac_server = getMacAddress(NetworkInterface.getByInetAddress(endereco));
+
+
 	            // Criando tamanho de leitura
 	            byte[] cbuffer = new byte[1];
 	            int bytesRead;
